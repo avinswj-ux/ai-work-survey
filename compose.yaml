@@ -1,0 +1,29 @@
+services:
+  survey:
+    build: .
+    restart: unless-stopped
+    env_file:
+      - .env.production
+    expose:
+      - "3000"
+    volumes:
+      - survey-data:/app/data
+
+  caddy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    depends_on:
+      - survey
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy-data:/data
+      - caddy-config:/config
+
+volumes:
+  survey-data:
+  caddy-data:
+  caddy-config:

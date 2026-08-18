@@ -1,0 +1,21 @@
+services:
+  survey:
+    build: .
+    container_name: ai-work-survey
+    restart: unless-stopped
+    env_file:
+      - .env.production
+    expose:
+      - "3000"
+    volumes:
+      - survey-data:/app/data
+    networks:
+      - existing-caddy
+
+volumes:
+  survey-data:
+
+networks:
+  existing-caddy:
+    external: true
+    name: ai-practice-registration_default

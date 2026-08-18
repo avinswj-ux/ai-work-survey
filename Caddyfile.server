@@ -1,0 +1,11 @@
+ai-survey.103-30-76-149.nip.io {
+  encode zstd gzip
+
+  header {
+    X-Content-Type-Options "nosniff"
+    X-Frame-Options "SAMEORIGIN"
+    Referrer-Policy "strict-origin-when-cross-origin"
+  }
+
+  reverse_proxy ai-work-survey:3000
+}

@@ -1,0 +1,4 @@
+ai-survey.103-30-76-149.nip.io {
+  encode zstd gzip
+  reverse_proxy survey:3000
+}
